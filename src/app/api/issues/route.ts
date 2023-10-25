@@ -36,15 +36,15 @@ export async function GET() {
     return 0;
   });
   const correctIssues = sortedIssues.map((issue) => {
-    const formatedDateIssue = formatIssueDates(issue);
+    // const formatedDateIssue = formatIssueDates(issue);
     if (issue.status === "OPEN") {
-      return { ...formatedDateIssue, status: "Aberto" };
+      return { ...issue, status: "Aberto" };
     }
     if (issue.status === "CLOSED") {
-      return { ...formatedDateIssue, status: "Fechado" };
+      return { ...issue, status: "Fechado" };
     }
     if (issue.status === "IN_PROGRESS") {
-      return { ...formatedDateIssue, status: "Em andamento" };
+      return { ...issue, status: "Em andamento" };
     }
   });
 
