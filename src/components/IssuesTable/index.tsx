@@ -3,9 +3,7 @@ import { DataTable } from "./DataTable";
 
 async function getData(): Promise<Issue[]> {
   const issues = await fetch("http://localhost:3000/api/issues", {
-    next: {
-      revalidate: 1,
-    },
+    cache: "no-store",
   }).then((res) => res.json());
 
   return issues;

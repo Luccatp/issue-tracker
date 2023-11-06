@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-// import { formatIssueDates } from "@/lib/utils";
+import { formatIssueDates } from "@/lib/utils";
 import { format } from "date-fns";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
@@ -36,15 +36,15 @@ export async function GET() {
     return 0;
   });
   const correctIssues = sortedIssues.map((issue) => {
-    // const formatedDateIssue = formatIssueDates(issue);
+    const formatedDateIssue = formatIssueDates(issue);
     if (issue.status === "OPEN") {
-      return { ...issue, status: "Aberto" };
+      return { ...formatedDateIssue, status: "Aberto" };
     }
     if (issue.status === "CLOSED") {
-      return { ...issue, status: "Fechado" };
+      return { ...formatedDateIssue, status: "Fechado" };
     }
     if (issue.status === "IN_PROGRESS") {
-      return { ...issue, status: "Em andamento" };
+      return { ...formatedDateIssue, status: "Em andamento" };
     }
   });
 

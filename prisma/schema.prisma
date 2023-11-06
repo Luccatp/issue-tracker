@@ -12,59 +12,12 @@ datasource db {
 }
 
 model Issue {
-  id             String        @id @default(uuid())
-  title          String
-  description    String
-  status         Status        @default(OPEN)
-  Author         Author?       @relation(fields: [authorId], references: [id])
-  authorId       String?
-  SupportAgent   SupportAgent? @relation(fields: [supportAgentId], references: [id])
-  supportAgentId String?
-  logs           Log[]
-  Company        Company?      @relation(fields: [companyId], references: [id])
-  companyId      String?
-}
-
-model Log {
-  createdAt      DateTime      @default(now())
-  Issue          Issue?        @relation(fields: [issueId], references: [id])
-  issueId        String        @id
-  SupportAgent   SupportAgent? @relation(fields: [supportAgentId], references: [id])
-  supportAgentId String
-}
-
-model User {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  Author       Author?
-  SupportAgent SupportAgent?
-}
-
-model Author {
-  id     String  @id
-  email  String  @unique
-  issues Issue[]
-  user   User    @relation(fields: [id], references: [id])
-}
-
-model SupportAgent {
-  id        String   @id
-  issues    Issue[]
-  Log       Log[]
-  user      User     @relation(fields: [id], references: [id])
-  Company   Company? @relation(fields: [companyId], references: [id])
-  companyId String?
-}
-
-model Company {
-  id           String         @id @default(uuid())
-  name         String
-  contactEmail String         @unique
-  Issue        Issue[]
-  SupportAgent SupportAgent[]
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  status      Status   @default(OPEN)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 enum Status {

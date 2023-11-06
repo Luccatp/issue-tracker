@@ -36,6 +36,7 @@ import { Trash2 } from "lucide-react";
 import { Issue } from "./columns";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useToast } from "../ui/use-toast";
 
 interface DataTableProps<TData extends Issue, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -51,6 +52,8 @@ export function DataTable<TData extends Issue, TValue>({
   );
 
   const router = useRouter();
+
+  const { toast } = useToast();
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
 
@@ -71,11 +74,14 @@ export function DataTable<TData extends Issue, TValue>({
   });
 
   const handleDelete = async (id: string) => {
-    const test = await fetch(`http://localhost:3000/api/issues/${id}`, {
+    await fetch(`http://localhost:3000/api/issues/${id}`, {
       method: "DELETE",
-    }).then((res) => res.json());
-
-    console.log(test);
+    }).then(() => {
+      toast({
+        title: "Chamado deletado com sucesso.",
+        description: "Seu chamado foi deletado do banco.",
+      });
+    });
   };
 
   return (
@@ -131,6 +137,7 @@ export function DataTable<TData extends Issue, TValue>({
                 <TableRow
                   className="cursor-pointer focus:outline-none focus:bg-gray-100"
                   tabIndex={0}
+                  data-cy={row.original.id}
                   onClick={() => {
                     router.push(`/issues/${row.original.id}`);
                   }}

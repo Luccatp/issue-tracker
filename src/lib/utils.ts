@@ -7,13 +7,13 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// export function formatIssueDates(issue: DatabaseIssue) {
-//   if (!issue) return null;
-//   const formatedCreatedAt = format(issue.createdAt, "dd/MM/yyyy");
-//   const formatedUpdatedAt = format(issue.updatedAt, "dd/MM/yyyy");
-//   return {
-//     ...issue,
-//     createdAt: formatedCreatedAt,
-//     updatedAt: formatedUpdatedAt,
-//   };
-// }
+export function formatIssueDates(issue: DatabaseIssue) {
+  if (!issue) return null;
+  const formatedCreatedAt = format(issue.createdAt, "dd/MM/yyyy");
+  const formatedUpdatedAt = format(issue.updatedAt, "dd/MM/yyyy");
+  return {
+    ...issue,
+    createdAt: formatedCreatedAt,
+    updatedAt: formatedUpdatedAt,
+  };
+}

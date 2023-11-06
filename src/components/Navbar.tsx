@@ -26,13 +26,13 @@ const Navbar: FC<NavbarProps> = ({}) => {
           <div className="hidden items-center space-x-4 sm:flex">
             <>
               <Link
-                href="/issues/list"
+                href="/dashboard"
                 className={buttonVariants({
                   variant: "ghost",
                   size: "sm",
                 })}
               >
-                Ver meus chamados
+                Ver chamados
               </Link>
               <Link
                 className={buttonVariants({

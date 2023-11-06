@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { z } from "zod";
+import { formatIssueDates } from "@/lib/utils";
 
 export async function GET(req: NextRequest, route: { params: { id: string } }) {
   try {
@@ -13,7 +14,7 @@ export async function GET(req: NextRequest, route: { params: { id: string } }) {
     if (!issue)
       return NextResponse.json({ error: "Issue not found" }, { status: 404 });
 
-    // const formatedIssue = formatIssueDates(issue);
+    const formatedIssue = formatIssueDates(issue);
 
     return NextResponse.json(issue, { status: 200 });
   } catch (e) {

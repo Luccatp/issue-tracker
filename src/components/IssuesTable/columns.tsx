@@ -13,10 +13,10 @@ export type Issue = {
 };
 
 export const columns: ColumnDef<Issue>[] = [
-  // {
-  //   accessorKey: "createdAt",
-  //   header: "Criação",
-  // },
+  {
+    accessorKey: "createdAt",
+    header: "Criação",
+  },
   {
     accessorKey: "status",
     header: "Status",
@@ -29,8 +29,8 @@ export const columns: ColumnDef<Issue>[] = [
     accessorKey: "description",
     header: "Description",
   },
-  // {
-  //   accessorKey: "updatedAt",
-  //   header: "Ultima atualizacao",
-  // },
+  {
+    accessorKey: "updatedAt",
+    header: "Ultima atualizacao",
+  },
 ];
